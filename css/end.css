@@ -1,0 +1,10 @@
+#finalScore{
+    text-align: center;
+}
+
+.side-by-side{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    margin: 5% 0;
+}
