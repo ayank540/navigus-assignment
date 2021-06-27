@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add course</title>
+</head>
+
+<body>
+    <form id="removeCourseForm">
+        <input type="text" id="courseId" placeholder="Enter course ID" />
+
+        <input type="submit" value="Remove course">
+    </form>
+</body>
+<script>
+    const form = document.getElementById("removeCourseForm")
+    form.addEventListener("submit", remove_course)
+    async function remove_course(event) {
+        event.preventDefault()
+        const courseId = document.getElementById("courseId").value
+
+        const result = await fetch("/api/delete-course", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                courseId,
+            })
+        }).then((res) => res.json())
+            .catch(e => { })
+        if (result.status == "ok") {
+            alert("Success")
+        } else {
+            alert(result.error)
+        }
+    }
+</script>
+
+</html>
